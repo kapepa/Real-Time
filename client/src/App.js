@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {Polling} from "./Polling";
+import {useState} from "react";
+import {Sourcing} from "./Sourcing";
 
 function App() {
+  let [way, setWay] = useState('sourcing');
+  let onWay = (way) => setWay(way);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <main className="main">
+          <div className="way">
+            <button onClick={() => onWay('polling')} className="way__btn">Polling</button>
+            <button onClick={() => onWay('sourcing')} className="way__btn">Sourcing</button>
+          </div>
+          {way === 'polling' && <Polling/>}
+          {way === 'sourcing' && <Sourcing/>}
+        </main>
       </header>
     </div>
   );
